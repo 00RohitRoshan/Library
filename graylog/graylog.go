@@ -108,43 +108,43 @@ func (g *Graylog) checkMustHave(m *Log) {
 	}
 
 	if m.ParamA  == "" {
-		m.ParamA = " "
+		m.ParamA = "N/A"
 	}
 	if m.ParamB  == "" {
-		m.ParamB = " "
+		m.ParamB = "N/A"
 	}
 	if m.ParamC  == "" {
-		m.ParamC = " "
+		m.ParamC = "N/A"
 	}
 	if m.BankCode == ""{
-		m.BankCode = " "
+		m.BankCode = "N/A"
 	}
 	if m.CFTrID == "" {
-		m.CFTrID = " "
+		m.CFTrID = "N/A"
 	}
 	if m.Channel == ""{
-		m.Channel = " "
+		m.Channel = "N/A"
 	}
 	if m.DeviceInfo == ""{
-		m.DeviceInfo = " "
+		m.DeviceInfo = "N/A"
 	}
 	if m.Message == ""{
-		m.Message = " "
+		m.Message = "N/A"
 	}
 	if m.PublishID == ""{
-		m.PublishID = " "
+		m.PublishID = "N/A"
 	}
 	if m.RRN == ""{
 		m.RRN = ""
 	}
 	if m.ReferenceID == ""{
-		m.ReferenceID = " "
+		m.ReferenceID = "N/A"
 	}
 	if m.Timestamp == "" {
-		m.Timestamp = " "
+		m.Timestamp = "N/A"
 	}
 	if m.TrID == ""{
-		m.TrID = " "
+		m.TrID = "N/A"
 	}
 
 }
