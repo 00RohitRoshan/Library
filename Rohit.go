@@ -15,17 +15,18 @@ func Multiply(a, b int) int {
 }
 
 var name string
-func Rohit(s string)  {
+
+func Rohit(s string) {
 	checkName()
-	fmt.Println(name," Says",s)	
+	fmt.Println(name, " Says", s)
 }
 
-func checkName(){
+func checkName() {
 	if name == "" {
 		panic("Plz set name")
 	}
 }
 
-func SetName(s string){
-	name= s 
+func SetName(s string) {
+	name = s
 }
