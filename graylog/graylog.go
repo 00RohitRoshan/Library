@@ -107,49 +107,49 @@ func (g *Graylog) checkMustHave(m *Log) {
 		m.HostName = hostname
 	}
 
-	if m.ParamA  == "" {
+	if m.ParamA == "" {
 		m.ParamA = "N/A"
 	}
-	if m.ParamB  == "" {
+	if m.ParamB == "" {
 		m.ParamB = "N/A"
 	}
-	if m.ParamC  == "" {
+	if m.ParamC == "" {
 		m.ParamC = "N/A"
 	}
-	if m.BankCode == ""{
+	if m.BankCode == "" {
 		m.BankCode = "N/A"
 	}
 	if m.CFTrID == "" {
 		m.CFTrID = "N/A"
 	}
-	if m.Channel == ""{
+	if m.Channel == "" {
 		m.Channel = "N/A"
 	}
-	if m.DeviceInfo == ""{
+	if m.DeviceInfo == "" {
 		m.DeviceInfo = "N/A"
 	}
-	if m.Message == ""{
+	if m.Message == "" {
 		m.Message = "N/A"
 	}
-	if m.PublishID == ""{
+	if m.PublishID == "" {
 		m.PublishID = "N/A"
 	}
-	if m.RRN == ""{
+	if m.RRN == "" {
 		m.RRN = ""
 	}
-	if m.ReferenceID == ""{
+	if m.ReferenceID == "" {
 		m.ReferenceID = "N/A"
 	}
 	if m.Timestamp == "" {
 		m.Timestamp = "N/A"
 	}
-	if m.TrID == ""{
+	if m.TrID == "" {
 		m.TrID = "N/A"
 	}
 
 }
 
-func (g *Graylog) Log(m Log) {
+func (g *Graylog) log(m Log) {
 	m.Timestamp = time.Now().String()
 	g.setStatic(&m)
 	g.checkMustHave(&m)
@@ -168,30 +168,30 @@ func (g *Graylog) Log(m Log) {
 }
 
 func (g *Graylog) Info(m Log) {
-	m.Level = "Info"
-	g.Log(m)
+	m.Level = "INFO"
+	g.log(m)
 }
 func (g *Graylog) Debug(m Log) {
-	m.Level = "Debug"
-	g.Log(m)
+	m.Level = "DEBUG"
+	g.log(m)
 }
 func (g *Graylog) Error(m Log) {
-	m.Level = "Error"
-	g.Log(m)
+	m.Level = "ERROR"
+	g.log(m)
 }
 func (g *Graylog) Fatal(m Log) {
-	m.Level = "Fatal"
-	g.Log(m)
+	m.Level = "FATAL"
+	g.log(m)
 }
 func (g *Graylog) Trace(m Log) {
-	m.Level = "Trace"
-	g.Log(m)
+	m.Level = "TRACE"
+	g.log(m)
 }
 func (g *Graylog) Warn(m Log) {
-	m.Level = "warn"
-	g.Log(m)
+	m.Level = "WARN"
+	g.log(m)
 }
 func (g *Graylog) Panic(m Log) {
-	m.Level = "Panic"
-	g.Log(m)
+	m.Level = "PANIC"
+	g.log(m)
 }
