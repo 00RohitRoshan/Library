@@ -5,7 +5,7 @@ import (
 	"fmt"
 	"net"
 
-	Mylibrary "github.com/00RohitRoshan/Rohit"
+	Mylibrary "github.com/00RohitRoshan/Rohit/Mylibrary"
 )
 
 type Config struct {
@@ -36,5 +36,4 @@ func (g *Graylog) Log(m map[string]interface{}) {
 	defer g.con.Close()
 	g.con.Write(jsonBytes)
 	Mylibrary.Rohit("Graylog log")
-	return
 }
