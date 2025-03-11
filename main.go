@@ -13,9 +13,8 @@ func main() {
 	})
 
 	for range 100 {
-		Logger.Log(map[string]interface{}{
-			"name":  "Bob",
-			"email": "bob@example.com",
+		Logger.Log(graylog.Log{
+			
 		})
 	}
 }
