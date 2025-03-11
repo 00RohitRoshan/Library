@@ -176,7 +176,7 @@ func (g *Graylog) checkMustHave(m *Log) {
 }
 //It writes m to the g.conn After seting the constants and checking for nil or empty values
 func (g *Graylog) log(m Log) {
-	if logLevels[logLevel] >= logLevels[m.Level]{
+	if logLevels[logLevel] > logLevels[m.Level]{
 		return
 	}
 	m.Timestamp = time.Now().String()
