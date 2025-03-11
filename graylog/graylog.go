@@ -107,6 +107,46 @@ func (g *Graylog) checkMustHave(m *Log) {
 		m.HostName = hostname
 	}
 
+	if m.ParamA  == "" {
+		m.ParamA = " "
+	}
+	if m.ParamB  == "" {
+		m.ParamB = " "
+	}
+	if m.ParamC  == "" {
+		m.ParamC = " "
+	}
+	if m.BankCode == ""{
+		m.BankCode = " "
+	}
+	if m.CFTrID == "" {
+		m.CFTrID = " "
+	}
+	if m.Channel == ""{
+		m.Channel = " "
+	}
+	if m.DeviceInfo == ""{
+		m.DeviceInfo = " "
+	}
+	if m.Message == ""{
+		m.Message = " "
+	}
+	if m.PublishID == ""{
+		m.PublishID = " "
+	}
+	if m.RRN == ""{
+		m.RRN = ""
+	}
+	if m.ReferenceID == ""{
+		m.ReferenceID = " "
+	}
+	if m.Timestamp == "" {
+		m.Timestamp = " "
+	}
+	if m.TrID == ""{
+		m.TrID = " "
+	}
+
 }
 
 func (g *Graylog) Log(m Log) {

@@ -13,8 +13,6 @@ func main() {
 	})
 
 	for range 100 {
-		Logger.Log(graylog.Log{
-			
-		})
+		Logger.Log(graylog.Log{})
 	}
 }
