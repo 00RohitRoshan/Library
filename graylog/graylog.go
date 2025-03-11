@@ -12,15 +12,33 @@ import (
 type Config struct {
 	Adr      string
 	Protocol string
+	LogLevel string
 }
 type Graylog struct {
 	con net.Conn
 }
 
+var logLevels = map[string]int{
+	"TRACE":   1,
+	"DEBUG":   2,
+	"INFO":    3,
+	"WARN":    4,
+	"ERROR":   5,
+	"FATAL":   6,
+	"PANIC":   7,
+}
+
+var logLevel string
+
 func InitGraylog(c Config) *Graylog {
 	conn, err := net.Dial(c.Protocol, c.Adr)
 	if err != nil {
 		panic("Cannot Dial Graylog Adress")
+	}
+	if c.LogLevel != "" && (logLevels[c.LogLevel] >= 7 && logLevels[c.LogLevel] <= 7){
+		logLevel = c.LogLevel
+	}else{
+		fmt.Println("Invalid log level")
 	}
 	return &Graylog{
 		con: conn,
@@ -150,6 +168,9 @@ func (g *Graylog) checkMustHave(m *Log) {
 }
 
 func (g *Graylog) log(m Log) {
+	if logLevels[logLevel] >= logLevels[m.Level]{
+		return
+	}
 	m.Timestamp = time.Now().String()
 	g.setStatic(&m)
 	g.checkMustHave(&m)
