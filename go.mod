@@ -1,4 +1,4 @@
-module github.com/00RohitRoshan/Rohit
+module github.com/00RohitRoshan/Library
 
 
 go 1.23.4

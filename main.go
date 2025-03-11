@@ -1,8 +1,8 @@
 package main
 
 import (
-	"github.com/00RohitRoshan/Rohit/Mylibrary"
-	"github.com/00RohitRoshan/Rohit/graylog"
+	"github.com/00RohitRoshan/Library/Mylibrary"
+	"github.com/00RohitRoshan/Library/graylog"
 )
 
 func main() {
@@ -13,6 +13,6 @@ func main() {
 	})
 
 	for range 100 {
-		Logger.Log(graylog.Log{})
+		Logger.Info(graylog.Log{})
 	}
 }

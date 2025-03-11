@@ -29,7 +29,7 @@ var logLevels = map[string]int{
 }
 
 var logLevel string
-
+//Initialize and return a preferred connection for graylog
 func InitGraylog(c Config) *Graylog {
 	conn, err := net.Dial(c.Protocol, c.Adr)
 	if err != nil {
@@ -66,7 +66,7 @@ type Log struct {
 }
 
 var logStatic Log
-
+//Resrves the static value to be set with every log when explicitly not mentioned
 func (g *Graylog) SetStatic(m Log) {
 	logStatic = m
 }
@@ -85,12 +85,12 @@ func (g *Graylog) setStatic(m *Log) {
 	}
 }
 
-type IP struct {
-	Query string
-}
 
 var ip string
-
+// Checks and formats the fields which should not be empty
+// Adds IP if not set
+// Adds hostname if not set
+// Adds N/A for anything else
 func (g *Graylog) checkMustHave(m *Log) {
 	if m.IPAddress == "" {
 		if ip == "" {
@@ -166,7 +166,7 @@ func (g *Graylog) checkMustHave(m *Log) {
 	}
 
 }
-
+//It writes m to the g.conn
 func (g *Graylog) log(m Log) {
 	if logLevels[logLevel] >= logLevels[m.Level]{
 		return
@@ -187,7 +187,7 @@ func (g *Graylog) log(m Log) {
 	}
 	fmt.Println("Gray log")
 }
-
+//Writes logs with INFO level
 func (g *Graylog) Info(m Log) {
 	m.Level = "INFO"
 	g.log(m)
