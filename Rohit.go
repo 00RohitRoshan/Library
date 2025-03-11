@@ -1,4 +1,4 @@
-package mathutils
+package Mylibrary
 
 import "fmt"
 
@@ -12,6 +12,14 @@ func Multiply(a, b int) int {
 	return a * b
 }
 
+var name string
 func Rohit(s string)  {
-	fmt.Println("Rohit Says",s)	
+	if name == "" {
+		panic("Plz set name")
+	}
+	fmt.Println(name," Says",s)	
+}
+
+func SetName(s string){
+	name= s 
 }
