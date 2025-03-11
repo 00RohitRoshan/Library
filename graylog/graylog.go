@@ -33,8 +33,8 @@ func (g *Graylog) Log(m map[string]interface{}) {
 	}
 	jsonBytes := []byte(jsonData)
 	// defer g.con.Close()
-	_ , err = g.con.Write(jsonBytes)
-	if err != nil{
+	_, err = g.con.Write(jsonBytes)
+	if err != nil {
 		Mylibrary.Console(err.Error())
 	}
 	Mylibrary.Console("Gray log")
