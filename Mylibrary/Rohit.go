@@ -16,7 +16,7 @@ func Multiply(a, b int) int {
 
 var name string
 
-func Rohit(s string) {
+func Console(s string) {
 	checkName()
 	fmt.Println(name, " Says", s)
 }

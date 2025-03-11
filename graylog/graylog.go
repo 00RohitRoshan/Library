@@ -2,10 +2,9 @@ package graylog
 
 import (
 	"encoding/json"
-	"fmt"
 	"net"
 
-	Mylibrary "github.com/00RohitRoshan/Rohit/Mylibrary"
+	"github.com/00RohitRoshan/Rohit/Mylibrary"
 )
 
 type Config struct {
@@ -29,11 +28,14 @@ func InitGraylog(c Config) *Graylog {
 func (g *Graylog) Log(m map[string]interface{}) {
 	jsonData, err := json.Marshal(m)
 	if err != nil {
-		fmt.Println("Error:", err)
+		Mylibrary.Console("err :" + err.Error())
 		return
 	}
 	jsonBytes := []byte(jsonData)
-	defer g.con.Close()
-	g.con.Write(jsonBytes)
-	Mylibrary.Rohit("Graylog log")
+	// defer g.con.Close()
+	_ , err = g.con.Write(jsonBytes)
+	if err != nil{
+		Mylibrary.Console(err.Error())
+	}
+	Mylibrary.Console("Gray log")
 }
