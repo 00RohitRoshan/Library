@@ -2,14 +2,11 @@ package graylog
 
 import (
 	"encoding/json"
-	"io/ioutil"
+	"fmt"
 	"net"
-	"net/http"
 	"os"
 	"reflect"
 	"time"
-
-	"github.com/00RohitRoshan/Rohit/Mylibrary"
 )
 
 type Config struct {
@@ -71,29 +68,32 @@ func (g *Graylog) setStatic(m *Log) {
 }
 
 type IP struct {
-    Query string
+	Query string
 }
 
 var ip string
+
 func (g *Graylog) checkMustHave(m *Log) {
 	if m.IPAddress == "" {
-		if ip == ""{
-			req, err := http.Get("http://ip-api.com/json/")
+		if ip == "" {
+			addrs, err := net.InterfaceAddrs()
 			if err != nil {
-				Mylibrary.Console(err.Error())
-			}
-			defer req.Body.Close()
-
-			body, err := ioutil.ReadAll(req.Body)
-			if err != nil {
-				Mylibrary.Console(err.Error())
+				// return "", err
 			}
 
-			var ip IP
-			json.Unmarshal(body, &ip)
-			m.IPAddress = ip.Query
+			for _, addr := range addrs {
+				// Check if the address is an IP address (not a MAC address)
+				if ipNet, ok := addr.(*net.IPNet); ok && !ipNet.IP.IsLoopback() {
+					// Filter only IPv4 addresses
+					if ipNet.IP.To4() != nil {
+						// return ipNet.IP.String(), nil
+						m.IPAddress = ipNet.IP.String()
+						ip = ipNet.IP.String()
+					}
+				}
+			}
 			// return ip.Query
-			}else{
+		} else {
 			m.IPAddress = ip
 
 		}
@@ -101,7 +101,7 @@ func (g *Graylog) checkMustHave(m *Log) {
 	if m.HostName == "" {
 		hostname, err := os.Hostname()
 		if err != nil {
-			Mylibrary.Console("Error:" + err.Error())
+			fmt.Println("Error:" + err.Error())
 			return
 		}
 		m.HostName = hostname
@@ -115,16 +115,16 @@ func (g *Graylog) Log(m Log) {
 	g.checkMustHave(&m)
 	jsonData, err := json.Marshal(m)
 	if err != nil {
-		Mylibrary.Console("err :" + err.Error())
+		fmt.Println("err :" + err.Error())
 		return
 	}
 	jsonBytes := []byte(jsonData)
 	// defer g.con.Close()
 	_, err = g.con.Write(jsonBytes)
 	if err != nil {
-		Mylibrary.Console(err.Error())
+		fmt.Println(err.Error())
 	}
-	Mylibrary.Console("Gray log")
+	fmt.Println("Gray log")
 }
 
 func (g *Graylog) Info(m Log) {
@@ -155,4 +155,3 @@ func (g *Graylog) Panic(m Log) {
 	m.Level = "Panic"
 	g.Log(m)
 }
-
