@@ -61,7 +61,7 @@ func (g *Graylog) setStatic(m *Log) {
 		srcField := srcVal.Field(i)
 		destField := destVal.Field(i)
 
-		if destField.CanSet() && srcField.String() != "" { // Ensure field is settable
+		if destField.CanSet() && destField.String() == "" { // Ensure field is settable
 			destField.Set(srcField)
 		}
 	}
