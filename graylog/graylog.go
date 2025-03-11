@@ -43,11 +43,11 @@ func InitGraylog(c Config) *Graylog {
 	if err != nil {
 		panic("Cannot Dial Graylog Adress")
 	}
-	if c.LogLevel != "" && (logLevels[c.LogLevel] >= 7 && logLevels[c.LogLevel] <= 7){
+	if level, exists := logLevels[c.LogLevel]; exists && level >= 1 && level <= 7 {
 		logLevel = c.LogLevel
-	}else{
-		fmt.Println("Invalid log level")
-	}
+	} else {
+		panic("Invalid log level")
+	}	
 	return &Graylog{
 		con: conn,
 	}
@@ -174,7 +174,7 @@ func (g *Graylog) checkMustHave(m *Log) {
 	}
 
 }
-//It writes m to the g.conn
+//It writes m to the g.conn After seting the constants and checking for nil or empty values
 func (g *Graylog) log(m Log) {
 	if logLevels[logLevel] >= logLevels[m.Level]{
 		return
