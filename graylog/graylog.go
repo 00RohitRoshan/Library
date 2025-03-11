@@ -74,23 +74,29 @@ type IP struct {
     Query string
 }
 
+var ip string
 func (g *Graylog) checkMustHave(m *Log) {
 	if m.IPAddress == "" {
-		req, err := http.Get("http://ip-api.com/json/")
-		if err != nil {
-			Mylibrary.Console(err.Error())
-		}
-		defer req.Body.Close()
+		if ip == ""{
+			req, err := http.Get("http://ip-api.com/json/")
+			if err != nil {
+				Mylibrary.Console(err.Error())
+			}
+			defer req.Body.Close()
 
-		body, err := ioutil.ReadAll(req.Body)
-		if err != nil {
-			Mylibrary.Console(err.Error())
-		}
+			body, err := ioutil.ReadAll(req.Body)
+			if err != nil {
+				Mylibrary.Console(err.Error())
+			}
 
-		var ip IP
-		json.Unmarshal(body, &ip)
-		m.IPAddress = ip.Query
-		// return ip.Query
+			var ip IP
+			json.Unmarshal(body, &ip)
+			m.IPAddress = ip.Query
+			// return ip.Query
+			}else{
+			m.IPAddress = ip
+
+		}
 	}
 	if m.HostName == "" {
 		hostname, err := os.Hostname()

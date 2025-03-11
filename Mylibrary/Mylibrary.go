@@ -1,20 +1,22 @@
 package Mylibrary
 
-import "fmt"
-
-// Add adds two integers and returns the result.
-func Add(a, b int) int {
-	checkName()
-	return a + b
-}
-
-// Multiply multiplies two integers and returns the result.
-func Multiply(a, b int) int {
-	checkName()
-	return a * b
-}
+import (
+	"fmt"
+	"os"
+)
 
 var name string
+
+func File(s string) {
+	checkName()
+	file, err := os.OpenFile("output.log", os.O_APPEND|os.O_CREATE|os.O_WRONLY, 0644)
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		return
+	}
+	defer file.Close()
+	fmt.Fprintln(file,name, " Says", s)
+}
 
 func Console(s string) {
 	checkName()
