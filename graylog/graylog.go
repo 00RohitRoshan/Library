@@ -30,6 +30,14 @@ var logLevels = map[string]int{
 
 var logLevel string
 //Initialize and return a preferred connection for graylog
+// "TRACE":   1,
+// "DEBUG":   2,
+// "INFO":    3,
+// "WARN":    4,
+// "ERROR":   5,
+// "FATAL":   6,
+// "PANIC":   7,
+// Logs Below the defined level won't be sent. Higher the number Higher the level
 func InitGraylog(c Config) *Graylog {
 	conn, err := net.Dial(c.Protocol, c.Adr)
 	if err != nil {
@@ -153,7 +161,7 @@ func (g *Graylog) checkMustHave(m *Log) {
 		m.PublishID = "N/A"
 	}
 	if m.RRN == "" {
-		m.RRN = ""
+		m.RRN = "N/A"
 	}
 	if m.ReferenceID == "" {
 		m.ReferenceID = "N/A"
@@ -192,26 +200,32 @@ func (g *Graylog) Info(m Log) {
 	m.Level = "INFO"
 	g.log(m)
 }
+//Writes logs with INFO level
 func (g *Graylog) Debug(m Log) {
 	m.Level = "DEBUG"
 	g.log(m)
 }
+//Writes logs with INFO level
 func (g *Graylog) Error(m Log) {
 	m.Level = "ERROR"
 	g.log(m)
 }
+//Writes logs with INFO level
 func (g *Graylog) Fatal(m Log) {
 	m.Level = "FATAL"
 	g.log(m)
 }
+//Writes logs with INFO level
 func (g *Graylog) Trace(m Log) {
 	m.Level = "TRACE"
 	g.log(m)
 }
+//Writes logs with INFO level
 func (g *Graylog) Warn(m Log) {
 	m.Level = "WARN"
 	g.log(m)
 }
+//Writes logs with INFO level
 func (g *Graylog) Panic(m Log) {
 	m.Level = "PANIC"
 	g.log(m)
