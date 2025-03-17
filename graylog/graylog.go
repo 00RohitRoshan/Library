@@ -33,7 +33,7 @@ var logLevel string
 var file *os.File
 
 // Initialize and return a preferred connection for graylog
-//  "TRACE":   1,
+//	"TRACE":   1,
 //	"DEBUG":   2,
 //	"INFO":    3,
 //	"WARN":    4,
@@ -70,17 +70,17 @@ type Log struct {
 	IPAddress   string `json:"ip_address"`
 	AppName     string `json:"appname"`
 	HostName    string `json:"hostname"`
-	TrID        string `json:"tr_id"`
-	Channel     string `json:"channel"`
-	BankCode    string `json:"bank_code"`
-	ReferenceID string `json:"reference_id"`
-	RRN         string `json:"rrn"`
-	PublishID   string `json:"publish_id"`
-	CFTrID      string `json:"cf_trid"`
-	DeviceInfo  string `json:"device_info"`
-	ParamA      string `json:"param_a"`
-	ParamB      string `json:"param_b"`
-	ParamC      string `json:"param_c"`
+	// TrID        string `json:"tr_id"`
+	// Channel     string `json:"channel"`
+	// BankCode    string `json:"bank_code"`
+	// ReferenceID string `json:"reference_id"`
+	// RRN         string `json:"rrn"`
+	// PublishID   string `json:"publish_id"`
+	// CFTrID      string `json:"cf_trid"`
+	// DeviceInfo  string `json:"device_info"`
+	// ParamA      string `json:"param_a"`
+	// ParamB      string `json:"param_b"`
+	// ParamC      string `json:"param_c"`
 }
 
 var logStatic Log
@@ -119,19 +119,19 @@ func (g *Graylog) SetDefaultEmpty(s string) {
 var setMustHave = map[string]func() string{
 	"IPAddress":   getIPAddress,
 	"HostName":    getHostName,
-	"ParamA":      func() string { return "N/A" },
-	"ParamB":      func() string { return "N/A" },
-	"ParamC":      func() string { return "N/A" },
-	"BankCode":    func() string { return "N/A" },
-	"CFTrID":      func() string { return "N/A" },
-	"Channel":     func() string { return "N/A" },
-	"DeviceInfo":  func() string { return "N/A" },
-	"Message":     func() string { return "N/A" },
-	"PublishID":   func() string { return "N/A" },
-	"RRN":         func() string { return "N/A" },
-	"ReferenceID": func() string { return "N/A" },
-	"Timestamp":   func() string { return "N/A" },
-	"TrID":        func() string { return "N/A" },
+	// "ParamA":      func() string { return "N/A" },
+	// "ParamB":      func() string { return "N/A" },
+	// "ParamC":      func() string { return "N/A" },
+	// "BankCode":    func() string { return "N/A" },
+	// "CFTrID":      func() string { return "N/A" },
+	// "Channel":     func() string { return "N/A" },
+	// "DeviceInfo":  func() string { return "N/A" },
+	// "Message":     func() string { return "N/A" },
+	// "PublishID":   func() string { return "N/A" },
+	// "RRN":         func() string { return "N/A" },
+	// "ReferenceID": func() string { return "N/A" },
+	// "Timestamp":   func() string { return "N/A" },
+	// "TrID":        func() string { return "N/A" },
 }
 
 // Function to check and set required fields dynamically
@@ -284,19 +284,19 @@ func (g *Graylog) Panic(m Log) {
 var Fields = map[int]string{
 	1 :		"IPAddress"   ,
 	2:		"HostName"    ,
-	3:		"ParamA"      ,
-	4:		"ParamB"      ,
-	5:		"ParamC"      ,
-	6:		"BankCode"    ,
-	7:		"CFTrID"      ,
-	8:		"Channel"     ,
-	9:		"DeviceInfo"  ,
-	10:		"Message"     ,
-	11:		"PublishID"   ,
-	12:		"RRN"         ,
-	13:		"ReferenceID" ,
-	14:		"Timestamp"   ,
-	15:		"TrID"        ,
+	// 3:		"ParamA"      ,
+	// 4:		"ParamB"      ,
+	// 5:		"ParamC"      ,
+	// 6:		"BankCode"    ,
+	// 7:		"CFTrID"      ,
+	// 8:		"Channel"     ,
+	// 9:		"DeviceInfo"  ,
+	// 10:		"Message"     ,
+	// 11:		"PublishID"   ,
+	// 12:		"RRN"         ,
+	// 13:		"ReferenceID" ,
+	// 14:		"Timestamp"   ,
+	// 15:		"TrID"        ,
 }
 // Get Log levels by int Key
 //  1:"TRACE" ,
